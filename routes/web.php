@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Session;
+use App\Http\Controllers\CustomAuthController;
 
 Route::get('/', function () {
     return redirect()->route('index');
@@ -36,6 +37,25 @@ Route::prefix('page-layouts')->group(function () {
 Route::view('sample-page', 'pages.sample-page')->name('sample-page');
 Route::view('store-list', 'pages.store-list')->name('store-list');
 Route::view('landing-page', 'pages.landing-page')->name('landing-page');
+
+Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
+    Route::get('/home', function () {
+        return view('home');
+    })->name('home');
+});
+
+Route::get('register', [RegisterController::class, 'create'])->middleware('guest');
+Route::post('register', [RegisterController::class, 'store'])->middleware('guest');
+
+Route::get('login', [CustomAuthController::class, 'index']);
+Route::get('registration', [CustomAuthController::class, 'registration'])->name('registration');
+Route::post('custom-registration', [CustomAuthController::class, 'customRegistration'])->name('register.custom');
+Route::post('login', [CustomAuthController::class, 'login'])->name('login'); ;
+
+
+
+// Route::view('login', 'pages.login')->name('login');
+
 
 Route::prefix('others')->group(function () {
     Route::view('400', 'errors.400')->name('error-400');
