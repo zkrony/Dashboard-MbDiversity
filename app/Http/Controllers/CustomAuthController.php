@@ -7,25 +7,29 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 class CustomAuthController extends Controller
 {
-    public function index()
-    {
-        return view('pages.login');
-    }  
+    // public function index()
+    // {
+    //     return view('pages.login');
+    // }  
       
     public function login(Request $request)
     {
-        $request->validate([
-            'email' => 'required',
-            'password' => 'required',
-        ]);
-   
-        $credentials = $request->only('email', 'password');
-        if (Auth::attempt($credentials)) {
-            return redirect()->intended('dashboard')
-                        ->withSuccess('Signed in');
+        if (count($request->all())>1) {
+            
+            $request->validate([
+                'email' => 'required',
+                'password' => 'required',
+            ]);
+    
+            $credentials = $request->only('email', 'password');
+            if (Auth::attempt($credentials)) {
+                return redirect()->intended('store-list')
+                            ->withSuccess('Signed in');
+            }
+    
+            return redirect("login")->withSuccess('Login details are not valid');
         }
-  
-        return redirect("login")->withSuccess('Login details are not valid');
+        else return view('pages.login');
     }
 
     public function registration()
@@ -42,9 +46,11 @@ class CustomAuthController extends Controller
         ]);
            
         $data = $request->all();
+        // echo(implode($data));
+        // //exit();
         $check = $this->create($data);
          
-        return redirect("dashboard")->withSuccess('You have signed-in');
+        return redirect("login")->withSuccess('You have signed-in');
     }
 
     public function create(array $data)
@@ -52,14 +58,15 @@ class CustomAuthController extends Controller
       return User::create([
         'name' => $data['name'],
         'email' => $data['email'],
+        'last-name' =>$data['last-name'],
         'password' => Hash::make($data['password'])
       ]);
     }    
     
-    public function dashboard()
+    public function index()
     {
         if(Auth::check()){
-            return view('dashboard');
+            return view('dashboard.index');
         }
   
         return redirect("login")->withSuccess('You are not allowed to access');

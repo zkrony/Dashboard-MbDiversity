@@ -5,9 +5,10 @@ use Illuminate\Http\Request;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\CustomAuthController;
+use App\Http\Controllers\HomeController;
 
 Route::get('/', function () {
-    return redirect()->route('index');
+    return redirect()->route('login');
 })->name('/');
 
 //Language Change
@@ -20,8 +21,16 @@ Route::get('lang/{locale}', function ($locale) {
     return redirect()->back();
 })->name('lang');
     
-Route::prefix('dashboard')->group(function () {
-    Route::view('index', 'dashboard.index')->name('index');
+// Route::prefix('dashboard')->group(['middleware' => ['auth']],function () {
+//     //Route::get('index', 'dashboard.index')->name('index');
+//     Route::get('index', [CustomAuthController::class, 'index']);
+// });
+
+Route::group(['middleware' => ['auth']], function () { 
+    Route::get('dashboard/index', [CustomAuthController::class, 'index']);
+    Route::get('store-list', [HomeController::class,'storeList'])->name('store-list');
+    Route::post('save-user', 'UserController@saveUser');
+    Route::put('edit-user', 'UserController@editUser');
 });
 
 Route::prefix('page-layouts')->group(function () {
@@ -35,7 +44,7 @@ Route::prefix('page-layouts')->group(function () {
 }); 
 
 Route::view('sample-page', 'pages.sample-page')->name('sample-page');
-Route::view('store-list', 'pages.store-list')->name('store-list');
+
 Route::view('landing-page', 'pages.landing-page')->name('landing-page');
 
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
@@ -47,7 +56,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
 Route::get('register', [RegisterController::class, 'create'])->middleware('guest');
 Route::post('register', [RegisterController::class, 'store'])->middleware('guest');
 
-Route::get('login', [CustomAuthController::class, 'index']);
+Route::get('login', [CustomAuthController::class, 'login']);
 Route::get('registration', [CustomAuthController::class, 'registration'])->name('registration');
 Route::post('custom-registration', [CustomAuthController::class, 'customRegistration'])->name('register.custom');
 Route::post('login', [CustomAuthController::class, 'login'])->name('login'); ;

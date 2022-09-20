@@ -16,6 +16,8 @@
                <div><a class="logo" href="/"><img class="img-fluid for-light" src="<?php echo e(asset('assets/images/logo/dashboard-logo.png')); ?>" alt="looginpage"><img class="img-fluid for-dark" src="<?php echo e(asset('assets/images/logo/logo_dark.png')); ?>" alt="looginpage"></a></div>
                <div class="login-main">
                   <form class="theme-form" action="<?php echo e(route('register.custom')); ?>" method="POST">
+                  <?php echo csrf_field(); ?> <!-- <?php echo e(csrf_field()); ?> -->
+
                      <h4>Create your account</h4>
                      <p>Enter your personal details to create account</p>
                      <div class="form-group">

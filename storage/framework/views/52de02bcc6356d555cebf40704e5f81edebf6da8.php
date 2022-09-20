@@ -1,25 +1,24 @@
-@extends('layouts.simple.master')
-@section('title', 'Store Page')
+<?php $__env->startSection('title', 'Store Page'); ?>
 
-@section('css')
-<link rel="stylesheet" type="text/css" href="{{asset('assets/css/vendors/datatables.css')}}">
-@endsection
+<?php $__env->startSection('css'); ?>
+<link rel="stylesheet" type="text/css" href="<?php echo e(asset('assets/css/vendors/datatables.css')); ?>">
+<?php $__env->stopSection(); ?>
 
-@section('style')
-@endsection
+<?php $__env->startSection('style'); ?>
+<?php $__env->stopSection(); ?>
 
-@section('breadcrumb-title')
+<?php $__env->startSection('breadcrumb-title'); ?>
 <h3>Store List</h3>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('breadcrumb-items')
+<?php $__env->startSection('breadcrumb-items'); ?>
 <li class="breadcrumb-item">Pages</li>
 <li class="breadcrumb-item active">Store List</li>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('content')
+<?php $__env->startSection('content'); ?>
 <div class="container-fluid">
-<!-- @echo "<pre>"
+<!-- @echo  "<pre>"
         @print_r($data)
 		<?php //echo json_encode($data); ?>; -->
 
@@ -47,20 +46,20 @@
 								</tr>
 							</thead>
 							<tbody>
-							@foreach($data as $item)
+							<?php $__currentLoopData = $data; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 								
 									<tr>
-										<td>{{ $item->store_supv }}</td>
-										<td>{{ $item->dist }}</td>
-										<td>{{ $item->type }}</td>
-										<td>{{ $item->group }}</td>
-										<td>{{ $item->manager_or_store }}</td>
-										<td>{{ $item->location }}</td>
-										<td>{{ $item->telephone_no }}</td>
-										<td>{{ $item->state_name }}</td>
+										<td><?php echo e($item->store_supv); ?></td>
+										<td><?php echo e($item->dist); ?></td>
+										<td><?php echo e($item->type); ?></td>
+										<td><?php echo e($item->group); ?></td>
+										<td><?php echo e($item->manager_or_store); ?></td>
+										<td><?php echo e($item->location); ?></td>
+										<td><?php echo e($item->telephone_no); ?></td>
+										<td><?php echo e($item->state_name); ?></td>
 										
 									</tr>
-							@endforeach
+							<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 							</tbody>
 							<tfoot>
 								<tr>
@@ -81,9 +80,10 @@
 		
 	</div>
 </div>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('script')
-<script src="{{asset('assets/js/datatable/datatables/jquery.dataTables.min.js')}}"></script>
-<script src="{{asset('assets/js/datatable/datatables/datatable.custom.js')}}"></script>
-@endsection
+<?php $__env->startSection('script'); ?>
+<script src="<?php echo e(asset('assets/js/datatable/datatables/jquery.dataTables.min.js')); ?>"></script>
+<script src="<?php echo e(asset('assets/js/datatable/datatables/datatable.custom.js')); ?>"></script>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.simple.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH E:\projects\upoo\Dashboard-MbDiversity\resources\views/pages/store-list.blade.php ENDPATH**/ ?>

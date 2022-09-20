@@ -17,6 +17,8 @@
                <div><a class="logo" href="/"><img class="img-fluid for-light" src="{{asset('assets/images/logo/dashboard-logo.png')}}" alt="looginpage"><img class="img-fluid for-dark" src="{{asset('assets/images/logo/logo_dark.png')}}" alt="looginpage"></a></div>
                <div class="login-main">
                   <form class="theme-form" action="{{ route('register.custom') }}" method="POST">
+                  @csrf <!-- {{ csrf_field() }} -->
+
                      <h4>Create your account</h4>
                      <p>Enter your personal details to create account</p>
                      <div class="form-group">

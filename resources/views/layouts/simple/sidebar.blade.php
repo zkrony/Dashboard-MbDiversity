@@ -20,15 +20,7 @@
                      		<p class="lan-2">{{ trans('lang.Dashboards,widgets & layout.') }}</p>
 						</div>
 					</li> -->
-					<li class="sidebar-list d-none">
-						<label class="badge badge-success">2</label><a class="sidebar-link sidebar-title {{request()->route()->getPrefix() == '/dashboard' ? 'active' : '' }}" href="#"><i data-feather="home"></i><span class="lan-3">{{ trans('lang.Dashboards') }}</span>
-							<div class="according-menu"><i class="fa fa-angle-{{request()->route()->getPrefix() == '/dashboard' ? 'down' : 'right' }}"></i></div>
-						</a>
-						<ul class="sidebar-submenu" style="display: {{ request()->route()->getPrefix() == '/dashboard' ? 'block;' : 'none;' }}">
-							<li><a class="lan-4 {{ Route::currentRouteName()=='index' ? 'active' : '' }}" href="{{route('index')}}">{{ trans('lang.Default') }}</a></li>
-                     		
-						</ul>
-					</li>
+					
 					<li class="sidebar-list d-none">
 						<a class="sidebar-link sidebar-title {{ request()->route()->getPrefix() == '/page-layouts' ? 'active' : '' }}" href="#"><i data-feather="layout"></i>
 							<span class="lan-7">{{ trans('lang.Page layout') }}</span>
