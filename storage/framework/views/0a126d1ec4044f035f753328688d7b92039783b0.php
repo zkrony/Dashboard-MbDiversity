@@ -43,7 +43,9 @@
 					<li class="sidebar-list">
 						<a class="sidebar-link sidebar-title link-nav <?php echo e(Route::currentRouteName()=='store-list' ? 'active' : ''); ?>" href="<?php echo e(route('store-list')); ?>"><i data-feather="file-text"> </i><span>Store List</span>
 					</a></li>
-					
+					<li class="sidebar-list">
+						<a class="sidebar-link sidebar-title link-nav <?php echo e(Route::currentRouteName()=='lookup-business' ? 'active' : ''); ?>" href="<?php echo e(route('lookup-business')); ?>"><i data-feather="file-text"> </i><span>Business Lookup</span>
+					</a></li>
 				</ul>
 			</div>
 			<div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>

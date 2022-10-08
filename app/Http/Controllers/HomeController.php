@@ -18,4 +18,10 @@ class HomeController extends Controller
 
         return view("pages.store-list", ["data"=>$results ]);
     }
+
+    public function lookupBusiness()
+    {
+        
+        return view('pages.business-lookup');
+    }
 }

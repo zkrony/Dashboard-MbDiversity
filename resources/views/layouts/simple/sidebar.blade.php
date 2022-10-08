@@ -43,7 +43,9 @@
 					<li class="sidebar-list">
 						<a class="sidebar-link sidebar-title link-nav {{ Route::currentRouteName()=='store-list' ? 'active' : '' }}" href="{{route('store-list')}}"><i data-feather="file-text"> </i><span>Store List</span>
 					</a></li>
-					
+					<li class="sidebar-list">
+						<a class="sidebar-link sidebar-title link-nav {{ Route::currentRouteName()=='lookup-business' ? 'active' : '' }}" href="{{route('lookup-business')}}"><i data-feather="file-text"> </i><span>Business Lookup</span>
+					</a></li>
 				</ul>
 			</div>
 			<div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>

@@ -29,6 +29,7 @@ Route::get('lang/{locale}', function ($locale) {
 Route::group(['middleware' => ['auth']], function () { 
     Route::get('dashboard/index', [CustomAuthController::class, 'index']);
     Route::get('store-list', [HomeController::class,'storeList'])->name('store-list');
+    Route::get('lookup-business', [HomeController::class,'lookupBusiness'])->name('lookup-business');
     Route::post('save-user', 'UserController@saveUser');
     Route::put('edit-user', 'UserController@editUser');
 });
